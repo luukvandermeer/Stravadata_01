@@ -19,6 +19,9 @@
 
     <!-- Begin Javascript -->
     <script type="text/javascript">
+
+  //    d3.json("test.json", function(data) {})
+
       var width = window.innerWidth,
         height = window.innerHeight;
 
@@ -55,10 +58,10 @@
           });
 
         // bind the data
-        var arcs = vis.selectAll("path.arc-path").data([0, 2, 0, 0, 8, 12, 25, 50, 60, 59, 0, 8, 12, 25, 50, 60, 59]);
+        var arcs = vis.selectAll("path.arc-path").data([0, 2, 0, 0, 8, 12, 25, 50, 60, 59, 0, 8, 12, 25, 50, 60, 59, 0, 8, 12, 25, 50, 60, 59, 2, 0, 0, 8,
+           12, 25, 50, 60, 59, 0, 8, 12, 25, 50, 0, 8, 12, 25, 50, 60, 59, 0, 8, 12, 25]);
 
         /* Comment --> overbodige code welke een functie aanroept om de kleuren aan te passen
-
                   // *** update existing arcs -- redraw them ***
                 arcs.attr("d", drawArc)
                     .attr("fill", function(d){
