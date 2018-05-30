@@ -1,0 +1,15 @@
+/* General CSS */
+
+h1 {
+  font-family: 'Roboto', cursive;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+}
+
+h2 {
+  font-family: 'Roboto';
+  font-size: 100%;
+  line-height: 100%;
+  color: black;
+}
