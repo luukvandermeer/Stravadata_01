@@ -1,6 +1,30 @@
 d3.json("test.json", function (data) {
-    // console.log(data[i].value);
+    console.log(function (d) {
+        return d.rondje * 20;
+    });
 
+
+    var jsonRondjes = [
+        {
+            "rondje": 1
+    },
+        {
+            "rondje": 2
+    },
+        {
+            "rondje": 30
+    },
+        {
+            "rondje": 40
+    },
+        {
+            "rondje": 50
+    },
+        {
+            "rondje": 60
+    }];
+
+    console.log(d3.select("body").append("svg").attr("rondje", 200).data(jsonRondjes).enter()); //code laat array zien in console, jeej
 
     var width = window.innerWidth,
         height = window.innerHeight;
@@ -11,8 +35,9 @@ d3.json("test.json", function (data) {
         .attr("height", height)
 
 
-    var render = function (dataset) {
+    var render = function () {
         vis = d3.select("svg"); // select the svg
+
 
         // set constants
         var PI = Math.PI;
@@ -25,6 +50,7 @@ d3.json("test.json", function (data) {
         //});
         //  var start_time = [0];    //startdataset
 
+        var arcs = vis.selectAll("path.arc-path").data(jsonRondjes);
 
         // arc accessor
         //  d and i are automatically passed to accessor functions,
@@ -37,9 +63,14 @@ d3.json("test.json", function (data) {
                 return arcMin + (i + 1) * (arcWidth);
             })
             .startAngle(0)
-            .endAngle(function (d, i) {
-                return d * 6 * (PI / 180);
-            });
+            .endAngle(
+                function (d) {
+                    return d.rondje
+                });
+
+        //Code om endAngel te bewerken return d * 6 * (PI /180)
+        //        * 6 * (PI / 180)
+        // });
 
         /*
         // bind the data
@@ -49,7 +80,9 @@ d3.json("test.json", function (data) {
             return d.value
         });
 */
-        var arcs = vis.selectAll("path.arc-path").data([10, 20, 34, 23, 23, 23, 45, 7, 8, 56, 34, 23, 23, 23, 45, 7, 8, 56]);
+
+
+
 
         //data([10,20,34,23,23,23,45,7,8,56,34,23,23,23,45,7,8,56]);
         //function (d) {return d.value*10});
@@ -88,48 +121,51 @@ d3.json("test.json", function (data) {
         .attr("d", drawArc); // draw the arc
     };
 
+    /* 
+        //Code aangepast waardoor deze functie niet meer nodig is
+        var generateTimes = function (quantity) {
+            var i, times = [];
 
-    // you can safely ignore the code below.
-    //  the code is used to create a click area for people to regenerate
-    //  arcs by generating a new data set and calling render on that set
-    // for generating a random array of times
-    var generateTimes = function (quantity) {
-        var i, times = [];
-
-        for (i = 0; i < quantity; i++) {
-            times.push(Math.round(Math.random() * 60));
-        }
-        return times;
-    };
-
+            for (i = 0; i < quantity; i++) {
+                times.push(Math.round(Math.random() * 60));
+            }
+            return times;
+        };
+    */
 
     // drawing the click area
-    var initialize = function () {
-        var arcMin = 365 / 2; // this should match the arcMin in render()
-        var times = generateTimes(300);
-        render(times);
-
-        /* Comment --> Maakt een innercircle welke niet nodig is
-
-                  // making the click circle
-                if(!d3.selectAll("circle.click-circle")[0].length) {    // if there is no click area..
-                  d3.select("svg").append("circle")
-                      .attr("class", 'click-circle')
-                      .attr("transform", "translate(400,200)")
-                      .attr("r", arcMin*0.85)
-                      .attr("fill", "rgba(201, 201, 201, 0.5)")
-                      .on("click", function(d) {
-                        times = generateTimes(6);
-                        render(times);
-                      });
-                }
-        */
+    var initialize = function (d, i) {
+        render(i);
     }
+
+
+
+    /* var initialize = function () {
+            var arcMin = 365 / 2; // this should match the arcMin in render()
+            var times = generateTimes(300);
+            render(times);
+    */
+    /* Comment --> Maakt een innercircle welke niet nodig is
+
+              // making the click circle
+            if(!d3.selectAll("circle.click-circle")[0].length) {    // if there is no click area..
+              d3.select("svg").append("circle")
+                  .attr("class", 'click-circle')
+                  .attr("transform", "translate(400,200)")
+                  .attr("r", arcMin*0.85)
+                  .attr("fill", "rgba(201, 201, 201, 0.5)")
+                  .on("click", function(d) {
+                    times = generateTimes(6);
+                    render(times);
+                  });
+            }
+    */
+
 
     initialize();
 
     d3.selectAll(".arc-path").each(function (d, i) {
-        console.log(i);
+        //   console.log(i);
     })
 
 });
