@@ -117,8 +117,8 @@ d3.json("test.json", function(data) {
 
     // set constants
     var PI = Math.PI;
-    var arcMin = 10; // inner radius of the first arc
-    var arcWidth = 5; // width
+    var arcMin = 90; // inner radius of the first arc
+    var arcWidth = 25; // width
     var arcPad = 1; // padding between arcs
     // var le_data = d3.selectAll(data).data(function (d, i) {
     //console.log(d);
@@ -186,9 +186,10 @@ d3.json("test.json", function(data) {
       .attr("class", "arc-path") // assigns a class for easier selecting
       .attr("transform", "translate(400,200)") // sets position--easier than setting x's and y's
       .attr("fill", "rgb(0, 204, 204)")
+       .attr("in","coloredBlur")
       //functie toegevoegd om de opacity aan te passen afhankelijk van een waarde
       .attr("opacity", function(d) {
-        return d.day * 7;
+        return d.day;
       })
       //      .on('mouseover', tip.show)
       //    .on('mouseout', tip.hide)
@@ -250,17 +251,32 @@ d3.json("test.json", function(data) {
 
   initialize();
 
+//Hoverstate toevoegen aan visualisation
+
   d3.selectAll(".arc-path")
     .each(function(d, i) {
             console.log(i);
     })
     .on("mouseover", function(d,i) {
-      console.log(d);
-      console.log(d.rondje);
+        console.log(d);
+        console.log(d.rondje);
+      d3.select(this)
+      .attr("fill", "orange");
+    })
+    .on("mouseout",function (d,i){
+      d3.select(this)
+        .attr("fill","rgb(0, 204, 204)");
+    });
+
+
+
+var input = function () {
+    d3.selectAll(".arc-path")
+    .each(function(d, i) {
+            console.log(i)
+    .on("mouseover", function(d,i) {
+      return d.ronde})})
     }
-  )
-    ;
-
-
+console.log(this);
 
 });
