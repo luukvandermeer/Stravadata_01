@@ -1,11 +1,23 @@
 /* General CSS */
 
-h1 {
+.text {
   font-family: 'Playfair Display', serif;
-  position: center;
-  width: 100%;
+  position: absolute;
   color: white;
   margin: 2em;
+  font-weight: 300;
+  /*  font-weight: 300;
+  font-size: calc( 32px + (54 - 32) * (100vw - 320px) / ( 840 - 320) );
+  line-height: 1.4em;
+  margin: calc(50vh - 1.5em) auto;
+  color: var(--white);
+  cursor: default;
+  user-select: none;*/
+}
+
+.chart {
+  bottom: 5%;
+  right: inherit;
 }
 
 h2 {
@@ -21,16 +33,38 @@ h2 {
 }
 */
 
+.click_arc {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  border-radius: 0px;
+  text-align: center;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.25) 100%, transparent 100%);
+  padding: 15px 15px 15px 15px;
+  margin: 2em;
+  -webkit-transition: color 250ms linear;
+  -moz-transition: color 250ms linear;
+  -ms-transition: color 250ms linear;
+  -o-transition: color 250ms linear;
+  transition: color 250ms linear;
+}
 
-.value {
-    border-radius: 4px;
-    text-align: center;
-    background: yellow;
-    padding: 15px 15px 15px 15px;
-    margin: 2em;
-    -webkit-transition: color 250ms linear;
-    -moz-transition: color 250ms linear;
-    -ms-transition: color 250ms linear;
-    -o-transition: color 250ms linear;
-    transition: color 250ms linear;
+.click_day {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  border-radius: 0px;
+  text-align: center;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.25) 100%, transparent 100%);
+  padding: 15px 15px 15px 15px;
+  margin: 2em;
+  -webkit-transition: color 250ms linear;
+  -moz-transition: color 250ms linear;
+  -ms-transition: color 250ms linear;
+  -o-transition: color 250ms linear;
+  transition: color 250ms linear;
+}
+
+#map-canvas {
+  top: 25%;
+    width: 500px;
+    height: 300px;
 }

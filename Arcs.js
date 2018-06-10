@@ -19,17 +19,17 @@ d3.json("test.json", function(data) {
       "day": 0.3
     },
     {
-      "rondje": 4,
+      "rondje": 0,
       "test": "extra",
       "day": 0.4
     },
     {
-      "rondje": 5,
+      "rondje": 0,
       "test": "extra",
       "day": 0.5
     },
     {
-      "rondje": 5,
+      "rondje": 0,
       "test": "extra",
       "day": 0.6
     },
@@ -44,22 +44,22 @@ d3.json("test.json", function(data) {
       "day": 0.5
     },
     {
-      "rondje": 5,
+      "rondje": 4,
       "test": "extra",
       "day": 0.6
     },
     {
-      "rondje": 5,
+      "rondje": 2,
       "test": "extra",
       "day": 0.7
     },
     {
-      "rondje": 5,
+      "rondje": 1,
       "test": "extra",
       "day": 0.5
     },
     {
-      "rondje": 5,
+      "rondje": 0,
       "test": "extra",
       "day": 0.6
     },
@@ -69,27 +69,27 @@ d3.json("test.json", function(data) {
       "day": 0.7
     },
     {
-      "rondje": 5,
+      "rondje": 1,
       "test": "extra",
       "day": 0.5
     },
     {
-      "rondje": 5,
+      "rondje": 4,
       "test": "extra",
       "day": 0.6
     },
     {
-      "rondje": 5,
+      "rondje": 2,
       "test": "extra",
       "day": 0.7
     },
     {
-      "rondje": 5,
+      "rondje": 0.5,
       "test": "extra",
       "day": 0.8
     },
     {
-      "rondje": 60,
+      "rondje": 5,
       "test": "extra",
       "day": 0.9
     }
@@ -97,13 +97,14 @@ d3.json("test.json", function(data) {
 
   console.log(d3.select("body").append("svg").attr("rondje", 200).data(jsonRondjes).enter()); //code laat array zien in console, jeej
 
-  var width = window.innerWidth,
+  var
+    width = window.innerWidth,
     height = window.innerHeight,
     margin = {
       top: 40,
       right: 20,
       bottom: 20,
-      left: 40
+      left: 500
     };
 
   // append svg to the DIV
@@ -117,8 +118,8 @@ d3.json("test.json", function(data) {
 
     // set constants
     var PI = Math.PI;
-    var arcMin = 90; // inner radius of the first arc
-    var arcWidth = 25; // width
+    var arcMin = 10; // inner radius of the first arc
+    var arcWidth = 10; // width
     var arcPad = 1; // padding between arcs
     // var le_data = d3.selectAll(data).data(function (d, i) {
     //console.log(d);
@@ -127,8 +128,7 @@ d3.json("test.json", function(data) {
     //  var start_time = [0];    //startdataset
 
     var arcs = vis.selectAll("path.arc-path")
-      .data(jsonRondjes)
-      ;
+      .data(jsonRondjes);
 
 
 
@@ -186,7 +186,7 @@ d3.json("test.json", function(data) {
       .attr("class", "arc-path") // assigns a class for easier selecting
       .attr("transform", "translate(400,200)") // sets position--easier than setting x's and y's
       .attr("fill", "rgb(0, 204, 204)")
-       .attr("in","coloredBlur")
+      .attr("in", "coloredBlur")
       //functie toegevoegd om de opacity aan te passen afhankelijk van een waarde
       .attr("opacity", function(d) {
         return d.day;
@@ -251,32 +251,49 @@ d3.json("test.json", function(data) {
 
   initialize();
 
-//Hoverstate toevoegen aan visualisation
+  //Hoverstate toevoegen aan visualisation
 
   d3.selectAll(".arc-path")
     .each(function(d, i) {
-            console.log(i);
+      console.log(i);
     })
-    .on("mouseover", function(d,i) {
-        console.log(d);
-        console.log(d.rondje);
+    .on("mouseover", function(d, i) {
+      console.log(d);
+      console.log(d.rondje);
+      d3.select(".click_arc") //tekst toevoegen in de DIV
+      .text(d.day);
+      d3.select(".click_day")
+      .text(d.rondje);
       d3.select(this)
-      .attr("fill", "orange");
+        .attr("fill", "orange");
+      /*.attr("opacity", 1)*/
     })
-    .on("mouseout",function (d,i){
+    .on("mouseout", function(d, i) {
+      d3.select(".click_arc") //tekst toevoegen in de DIV
+      .text("x km");
+      d3.select(".click_day")
+      .text("sunhours");
       d3.select(this)
-        .attr("fill","rgb(0, 204, 204)");
+        .attr("fill", "rgb(0, 204, 204)");
+
+  /*  .on("click", function (d,i){
+      d3.select(this)
+      .text('test' + d.rondje);
+    });*/
+
+
     });
 
 
 
-var input = function () {
+  var input = function() {
     d3.selectAll(".arc-path")
-    .each(function(d, i) {
-            console.log(i)
-    .on("mouseover", function(d,i) {
-      return d.ronde})})
-    }
-console.log(this);
-
+      .each(function(d, i) {
+        console.log(i)
+          .on("mouseover", function(d, i) {
+            return d.ronde
+          })
+      })
+  }
+//  console.log(input);
 });
