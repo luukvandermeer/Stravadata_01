@@ -1,5 +1,5 @@
 
-var gpxXMLUrl = "https://www.gpsvisualizer.com/display/convert/20180616150756-56238-data.gpx";
+var gpxXMLUrl = "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml";
 //var gpxXMLUrl = "https://rawgit.com/adg29/tour-de-france/f5479188bb7bb96e35489770827ed09730e8e8ca/20-strava-thibaut-pinot-Tour_de_France_Etape_20_MAGIQUE_.xml";
 
 var map;
