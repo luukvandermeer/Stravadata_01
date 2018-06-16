@@ -1,7 +1,11 @@
-var gpxXMLUrl = "https://rawgit.com/adg29/tour-de-france/f5479188bb7bb96e35489770827ed09730e8e8ca/20-strava-thibaut-pinot-Tour_de_France_Etape_20_MAGIQUE_.xml";
+
+var gpxXMLUrl = "https://www.gpsvisualizer.com/display/convert/20180616150756-56238-data.gpx";
+//var gpxXMLUrl = "https://rawgit.com/adg29/tour-de-france/f5479188bb7bb96e35489770827ed09730e8e8ca/20-strava-thibaut-pinot-Tour_de_France_Etape_20_MAGIQUE_.xml";
 
 var map;
 
+
+//Load XML file with the GPX parser
 function loadGPXFileIntoGoogleMap(map, filename) {
   $.ajax({
     url: filename,
@@ -9,7 +13,7 @@ function loadGPXFileIntoGoogleMap(map, filename) {
     success: function(data) {
       console.log('Loaded', filename);
       var parser = new GPXParser(data, map);
-      parser.setTrackColour("#ff0000"); // Set the track line colour
+      parser.setTrackColour("#42b3f4"); // Set the track line colour
       parser.setTrackWidth(5); // Set the track line width
       parser.setMinTrackPointDelta(0.001); // Set the minimum distance between track points
       parser.centerAndZoom(data);
@@ -31,7 +35,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
 
     // How zoomed in you want the map to start at (always required)
-    zoom: 11,
+    zoom: 2,
 
     // The latitude and longitude to center the map (always required)
     center: new google.maps.LatLng(52.1572, 4.4501), // Leiden
@@ -282,8 +286,6 @@ function initMap() {
       }]
     }]
   };
-
-
 
   var map = new google.maps.Map(document.getElementById("map-canvas"),
     mapOptions);

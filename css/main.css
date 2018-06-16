@@ -64,7 +64,25 @@ h2 {
 }
 
 #map-canvas {
-  top: 25%;
+  top: 1%;
     width: 500px;
     height: 300px;
+}
+
+
+/* Aanpassen van het Google Maps iframe */
+.gm-fullscreen-control{
+opacity:1;
+}
+
+.gm-style-mtc{
+opacity: 0;
+}
+
+.gmnoprint{
+  opacity: 0;
+}
+
+.gm-style-cc{
+opacity: 0;
 }
