@@ -6,100 +6,121 @@ d3.json("test.json", function(data) {
   var jsonRondjes = [{
       "rondje": 1,
       "test": "extra",
-      "day": 0.1
+      "day": 0.1,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 2,
       "test": "extra",
-      "day": 0.2
+      "day": 0.2,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 3,
       "test": "extra",
-      "day": 0.3
+      "day": 0.3,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 0,
       "test": "extra",
-      "day": 0.4
+      "day": 0.4,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 0,
       "test": "extra",
-      "day": 0.5
+      "day": 0.5,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 0,
       "test": "extra",
-      "day": 0.6
+      "day": 0.6,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 5,
       "test": "extra",
-      "day": 0.7
+      "day": 0.7,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 5,
       "test": "extra",
-      "day": 0.5
+      "day": 0.5,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 4,
       "test": "extra",
-      "day": 0.6
+      "day": 0.6,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 2,
       "test": "extra",
-      "day": 0.7
+      "day": 0.7,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
+
     },
     {
       "rondje": 1,
       "test": "extra",
-      "day": 0.5
+      "day": 0.5,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 0,
       "test": "extra",
-      "day": 0.6
+      "day": 0.6,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 5,
       "test": "extra",
-      "day": 0.7
+      "day": 0.7,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 1,
       "test": "extra",
-      "day": 0.5
+      "day": 0.5,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 4,
       "test": "extra",
-      "day": 0.6
+      "day": 0.6,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 2,
       "test": "extra",
-      "day": 0.7
+      "day": 0.7,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 0.5,
       "test": "extra",
-      "day": 0.8
+      "day": 0.8,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 5,
       "test": "extra",
-      "day": 0.9
+      "day": 0.9,
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     }
   ];
 
   console.log(d3.select("body").append("svg").attr("rondje", 200).data(jsonRondjes).enter()); //code laat array zien in console, jeej
 
   var
-    width = window.innerWidth,
-    height = window.innerHeight,
+    width = 500,
+    height = 300,
+    //    width = window.innerWidth,
+    //   height = window.innerHeight,
     margin = {
       top: 40,
       right: 20,
@@ -118,8 +139,8 @@ d3.json("test.json", function(data) {
 
     // set constants
     var PI = Math.PI;
-    var arcMin = 10; // inner radius of the first arc
-    var arcWidth = 10; // width
+    var arcMin = 5; // inner radius of the first arc
+    var arcWidth = 5; // width
     var arcPad = 1; // padding between arcs
     // var le_data = d3.selectAll(data).data(function (d, i) {
     //console.log(d);
@@ -258,33 +279,40 @@ d3.json("test.json", function(data) {
       console.log(i);
     })
     .on("mouseover", function(d, i) {
-      console.log(d);
-      console.log(d.rondje);
+      //  console.log(d);
+      //  console.log(d.rondje);
+      //  console.log(d.url); //data url is available
       d3.select(".click_arc") //tekst toevoegen in de DIV
-      .text(d.day);
+        .text(d.day);
       d3.select(".click_day")
-      .text(d.rondje);
+        .text(d.rondje);
+
+      //Functie loads XML file into maps
+      initMap(d.url);
+
+      d3.select(".click_route")
+        .text(d.url);
+
+      //  "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml");
+      //  loadGPXFileIntoGoogleMap(map, d3.select(".click_route")
+      //        .text(d.url));
       d3.select(this)
         .attr("fill", "orange");
       /*.attr("opacity", 1)*/
     })
     .on("mouseout", function(d, i) {
       d3.select(".click_arc") //tekst toevoegen in de DIV
-      .text("x km");
+        .text("x km");
       d3.select(".click_day")
-      .text("sunhours");
+        .text("sunhours");
       d3.select(this)
         .attr("fill", "rgb(0, 204, 204)");
 
-  /*  .on("click", function (d,i){
-      d3.select(this)
-      .text('test' + d.rondje);
-    });*/
-
-
+      /*  .on("click", function (d,i){
+          d3.select(this)
+          .text('test' + d.rondje);
+        });*/
     });
-
-
 
   var input = function() {
     d3.selectAll(".arc-path")
@@ -295,5 +323,5 @@ d3.json("test.json", function(data) {
           })
       })
   }
-//  console.log(input);
+  //console.log(input);
 });

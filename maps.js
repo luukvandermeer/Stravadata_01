@@ -1,12 +1,19 @@
+//Hierin besloten om de visualisaties via URL's en Googlemaps op te roepen. Deze functie had
+//makkelijker gekund waarbij ik echter minder kennis had opgedaan m.b.t. XML files en Google Maps API
 
-var gpxXMLUrl = "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml";
+
+
+//var gpxXMLUrl = "route";
+//console.log("route");
+//console.log(route);
+var gpxXMLUrl = "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml";
 //var gpxXMLUrl = "https://rawgit.com/adg29/tour-de-france/f5479188bb7bb96e35489770827ed09730e8e8ca/20-strava-thibaut-pinot-Tour_de_France_Etape_20_MAGIQUE_.xml";
 
 var map;
 
-
 //Load XML file with the GPX parser
 function loadGPXFileIntoGoogleMap(map, filename) {
+//console.log(filename);
   $.ajax({
     url: filename,
     dataType: "xml",
@@ -27,7 +34,8 @@ function loadGPXFileIntoGoogleMap(map, filename) {
   });
 }
 
-function initMap() {
+function initMap(mapUrl = gpxXMLUrl) {
+  console.log(mapUrl);
   // Basic options for a simple Google Map
   // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
   var mapOptions = {
@@ -35,7 +43,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
 
     // How zoomed in you want the map to start at (always required)
-    zoom: 2,
+    zoom: 11,
 
     // The latitude and longitude to center the map (always required)
     center: new google.maps.LatLng(52.1572, 4.4501), // Leiden
@@ -290,7 +298,7 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById("map-canvas"),
     mapOptions);
   console.log('initMap');
-  loadGPXFileIntoGoogleMap(map, gpxXMLUrl);
+  loadGPXFileIntoGoogleMap(map, mapUrl);
 
   // Get the HTML DOM element that will contain your map
   // We are using a div with id="map" seen below in the <body>
@@ -300,7 +308,5 @@ function initMap() {
   //  var map = new google.maps.Map(mapElement, mapOptions);
 
 }
-
-
 // When the window has finished loading create our google map below
 google.maps.event.addDomListener(window, 'load', initMap);

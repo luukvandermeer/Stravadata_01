@@ -25,17 +25,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://rawgit.com/peplin/gpxviewer/next/loadgpx.js"></script>
 
+  <!-- variabele overschrijven -->
+    <script type="text/javascript" src="arcs.js"></script>
+      <script type="text/javascript" src="maps.js"></script>
+
 </head>
 
-<body bgcolor=#27292b>
-
+<body bgcolor=#394a51>
 
   <article class="text">
     This is Luuk.
     <br>
     <br> Luuk's very first d3-visualisation <span class="click_arc">x km</span> from where <br>
     <br>
-    <span class="click_day">sunhours</span> it was a sunny day!
+    <span class="click_day">sunhours</span> it was a sunny day! <br>
+    <br>
+    <span class="click_route">URL rawgit.com</span>
+
     <!--
 <span class="click_arc" data-value="x">$3,024</span>
 -->
@@ -43,7 +49,7 @@
 
   <div class="chart">
     <!-- Code arcs -->
-    <script type="text/javascript" src="Arcs.js"></script>
+    <script type="text/javascript" src="arcs.js"></script>
   </div>
 
   <div id="map-canvas">

@@ -5,19 +5,19 @@
   position: absolute;
   color: white;
   margin: 2em;
+  position: center;
   font-weight: 300;
-  /*  font-weight: 300;
-  font-size: calc( 32px + (54 - 32) * (100vw - 320px) / ( 840 - 320) );
+  font-size: 1em;
   line-height: 1.4em;
-  margin: calc(50vh - 1.5em) auto;
-  color: var(--white);
+  margin-left: 6em;
   cursor: default;
-  user-select: none;*/
+  user-select: none;
 }
 
 .chart {
   bottom: 5%;
   right: inherit;
+  margin-left: 20em;
 }
 
 h2 {
@@ -64,7 +64,6 @@ h2 {
 }
 
 #map-canvas {
-  top: 1%;
     width: 500px;
     height: 300px;
 }
