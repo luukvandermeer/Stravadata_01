@@ -110,7 +110,7 @@ d3.json("test.json", function(data) {
       "rondje": 6.29,
       "test": "extra",
       "day": 0.8,
-      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
+      "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/20180509.xml",
     }
   ];
 
