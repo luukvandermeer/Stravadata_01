@@ -24,19 +24,19 @@ d3.json("test.json", function(data) {
     {
       "rondje": 0,
       "test": "extra",
-      "day": 0.4,
+      "day": 0,
       "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/test.xml",
     },
     {
       "rondje": 0,
       "test": "extra",
-      "day": 0.5,
+      "day": 0,
       "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
       "rondje": 0,
       "test": "extra",
-      "day": 0.6,
+      "day": 0,
       "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
@@ -107,9 +107,9 @@ d3.json("test.json", function(data) {
       "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     },
     {
-      "rondje": 5,
+      "rondje": 6.29,
       "test": "extra",
-      "day": 0.9,
+      "day": 0.8,
       "url": "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml",
     }
   ];
@@ -164,6 +164,9 @@ d3.json("test.json", function(data) {
         return arcMin + (i + 1) * (arcWidth);
       })
       .startAngle(0)
+        // function(d) {
+          // return d.day
+        // })
       .endAngle(
         function(d) {
           return d.rondje

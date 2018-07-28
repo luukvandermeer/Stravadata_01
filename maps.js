@@ -43,7 +43,7 @@ function initMap(mapUrl = gpxXMLUrl) {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
 
     // How zoomed in you want the map to start at (always required)
-    zoom: 11,
+    zoom: 2,
 
     // The latitude and longitude to center the map (always required)
     center: new google.maps.LatLng(52.1572, 4.4501), // Leiden
