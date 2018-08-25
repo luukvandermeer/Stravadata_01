@@ -1,71 +1,172 @@
 /* General CSS */
 
+.h1 {
+  display: block;
+  font-family: 'Montserrat';
+  color: #2D4059;
+  position: center;
+  font-size: 3em;
+  font-weight: bold;
+  margin: 2em;
+}
+
 .text {
-  font-family: 'Playfair Display', serif;
-  position: absolute;
-  color: white;
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
   margin: 2em;
   position: center;
   font-weight: 300;
-  font-size: 1em;
+  font-size: 0.9em;
   line-height: 1.4em;
   margin-left: 6em;
-  cursor: default;
-  user-select: none;
+  width: 20%;
 }
 
 .chart {
-  bottom: 5%;
+  position: fixed;
+  top: 10%;
   right: inherit;
-  margin-left: 20em;
+  position: center;
+  margin-left: 40%;
+
 }
 
-h2 {
-  font-family: 'Roboto';
-  font-size: 100%;
-  line-height: 100%;
-  color: black;
-}
 
-/* select arc heb ik uiteindelijk via Arcs.js gedaan
-.arc-path:hover {
-  fill:orange
-}
-*/
 
-.click_arc {
-  font-family: 'Playfair Display', serif;
-  color: white;
+/* Code for hover data */
+.day {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.25) 100%, transparent 100%);
-  padding: 15px 15px 15px 15px;
-  margin: 2em;
-  -webkit-transition: color 250ms linear;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  /* -webkit-transition: color 250ms linear;
   -moz-transition: color 250ms linear;
   -ms-transition: color 250ms linear;
   -o-transition: color 250ms linear;
-  transition: color 250ms linear;
+  transition: color 250ms linear; */
 }
 
-.click_day {
-  font-family: 'Playfair Display', serif;
-  color: white;
+.hours {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.25) 100%, transparent 100%);
-  padding: 15px 15px 15px 15px;
-  margin: 2em;
-  -webkit-transition: color 250ms linear;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  /* -webkit-transition: color 250ms linear;
   -moz-transition: color 250ms linear;
   -ms-transition: color 250ms linear;
   -o-transition: color 250ms linear;
-  transition: color 250ms linear;
+  transition: color 250ms linear; */
 }
+
+.distance {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  border-radius: 0px;
+  text-align: center;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  /* -webkit-transition: color 250ms linear;
+  -moz-transition: color 250ms linear;
+  -ms-transition: color 250ms linear;
+  -o-transition: color 250ms linear;
+  transition: color 250ms linear; */
+}
+
+.elevation {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  border-radius: 0px;
+  text-align: center;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  /* -webkit-transition: color 250ms linear;
+  -moz-transition: color 250ms linear;
+  -ms-transition: color 250ms linear;
+  -o-transition: color 250ms linear;
+  transition: color 250ms linear; */
+}
+
+.sunhours {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  border-radius: 0px;
+  text-align: center;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  /* -webkit-transition: color 250ms linear;
+  -moz-transition: color 250ms linear;
+  -ms-transition: color 250ms linear;
+  -o-transition: color 250ms linear;
+  transition: color 250ms linear; */
+}
+
+.temperature {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  border-radius: 0px;
+  text-align: center;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  /* -webkit-transition: color 250ms linear;
+  -moz-transition: color 250ms linear;
+  -ms-transition: color 250ms linear;
+  -o-transition: color 250ms linear;
+  transition: color 250ms linear; */
+}
+
+
+.rainfall {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  border-radius: 0px;
+  text-align: center;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  /* -webkit-transition: color 250ms linear;
+  -moz-transition: color 250ms linear;
+  -ms-transition: color 250ms linear;
+  -o-transition: color 250ms linear;
+  transition: color 250ms linear; */
+}
+
+.windspeed {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  border-radius: 0px;
+  text-align: center;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  /* -webkit-transition: color 250ms linear;
+  -moz-transition: color 250ms linear;
+  -ms-transition: color 250ms linear;
+  -o-transition: color 250ms linear;
+  transition: color 250ms linear; */
+}
+
+
+
+
+
+
 
 #map-canvas {
-    width: 500px;
-    height: 300px;
+    position: fixed;
+    bottom:0;
+    width: 20%;
+    height: 150px;
+    margin-left: 6em;
 }
 
 

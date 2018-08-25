@@ -19,6 +19,7 @@
   <!--Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
   <!--script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?=   APIKEY   &callback=initMap"></script-->
@@ -32,16 +33,24 @@
 
 </head>
 
-<body bgcolor=#394a51>
+<body bgcolor=F6F6F6>
 
   <article class="text">
-    This is Luuk.
-    <br>
-    <br> Luuk's very first d3-visualisation <span class="click_arc">x km</span> from where <br>
-    <br>
-    <span class="click_day">sunhours</span> it was a sunny day! <br>
-    <br>
-    <span class="click_route">URL rawgit.com</span>
+
+    <h1> Strava Data </h1>
+
+How does a complete year of bike riding look, besides a big pile of apple pies and banana peels?
+<br>
+<br>
+Well, <span class="day">in 2017</span> I cycled for over <span class="hours">x hours</span> hours, with a total distance of <span class="distance">x km</span>kilometers and an elevation of<span class="elevation">x m</span>meters.
+<br>
+<br>
+On the days that I cycled their were <span class="sunhours">x sunhours</span>  of sun with an average temperature of <span class="temperature">x degrees </span>  and a<span class="rainfall">x m</span>  rainfall.
+<br>
+<br>
+Sometimes the <span class="click_arc">m/s windspeed</span>  helped me when I was cycling a loop but…….it actually always felt like a headwind.
+<br>
+<!-- <span class="click_route">test voor route</span> -->
 
     <!--
 <span class="click_arc" data-value="x">$3,024</span>
@@ -49,7 +58,6 @@
   </article>
 
   <div class="chart">
-    <!-- Code arcs -->
     <script type="text/javascript" src="arcs.js"></script>
   </div>
 
