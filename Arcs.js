@@ -384,9 +384,11 @@ d3.json("test.json", function(data) {
     };
 
   // append svg to the DIV
-  d3.select(".chart").append("svg:svg")
+  d3.select(".chart")
+    .append("svg:svg")
     .attr("width", width)
     .attr("height", height)
+
 
 
   var render = function() {
@@ -395,7 +397,7 @@ d3.json("test.json", function(data) {
     // set constants
     var PI = Math.PI;
     var arcMin = 1; // inner radius of the first arc
-    var arcWidth = 0.9; // width
+    var arcWidth = 1.0; // width
     var arcPad = 0.01; // padding between arcs
     var arcs = vis.selectAll("path.arc-path")
       .data(jsonRondjes);
@@ -468,7 +470,7 @@ d3.json("test.json", function(data) {
       d3.select(".distance")
           .text(d.distance/1000)
       d3.select(".elevation")
-          .text(d.elevation)
+          .text(d.total_elevation_gain)
       d3.select(".sunhours")
           .text(d.NG)
       d3.select(".temperature")
@@ -481,12 +483,13 @@ d3.json("test.json", function(data) {
       initMap(d.url);
       d3.select(".click_route")
         .text(d.url);
-
+      arcWidth = 5.0;
   // Color on mouseover
       d3.select(this)
         .attr("fill", "orange");
-      /*.attr("opacity", 1)*/
     })
+
+
     .on("mouseout", function(d, i) {
       d3.select(".day")
         .text("in 2017")
@@ -507,6 +510,7 @@ d3.json("test.json", function(data) {
 
       d3.select(this)
         .attr("fill", "rgb(0, 204, 204)");
+
     });
 
   var input = function() {
@@ -518,4 +522,5 @@ d3.json("test.json", function(data) {
           })
       })
   }
+
 });

@@ -24,14 +24,22 @@
 
 .chart {
   position: fixed;
-  top: 10%;
+  top: 5%;
   right: inherit;
   position: center;
   margin-left: 40%;
-
 }
 
-
+.legend {
+  position: fixed;
+  right: inherit;
+  position: center;
+  max-width: 50%;
+  height: auto;
+  bottom: 0%;
+  margin-left: 4.5em;
+  z-index: -5;
+}
 
 /* Code for hover data */
 .day {
