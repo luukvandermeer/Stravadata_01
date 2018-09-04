@@ -383,6 +383,14 @@ d3.json("test.json", function(data) {
       left: 500
     };
 
+//Colorlegend
+var blue ="rgb(32,126,132)";
+var green ="rgb(94,144,81)";
+var yellow ="rgb(248,181,0)";
+var orange = "rgb(230,109,53)";
+var red = "rgb(180,40,30)";
+
+
   // append svg to the DIV
   d3.select(".chart")
     .append("svg:svg")
@@ -427,14 +435,21 @@ d3.json("test.json", function(data) {
     arcs.enter().append("svg:path")
       .attr("class", "arc-path") // assigns a class for easier selecting
       .attr("transform", "translate(400,200)") // sets position--easier than setting x's and y's
-      .attr("fill", "rgb(0, 204, 204)")
-      .attr("in", "coloredBlur")
-      //functie toegevoegd om de opacity aan te passen afhankelijk van een waarde
-      .attr("opacity", function(d) {
-        return d.FG;
+      // .attr("fill", red)
+      .attr("fill", function (d) {
+        if (d.G >= -39 && d.G <=57) {return blue}
+        if (d.G >= 58 && d.G <=90) {return green}
+        if (d.G >= 91 && d.G <=133) {return yellow}
+        if (d.G >= 134 && d.G <=167) {return orange}
+        else {return red}
       })
-      //      .on('mouseover', tip.show)
-      //    .on('mouseout', tip.hide)
+      .attr("in", "coloredBlur")
+      .attr("opacity", function(d) {
+        return (d.FG/1.15+30)/100;
+      // .attr("opacity","0.5")
+
+      })
+
 
       /* code om o.b.v. waarde en een functie de kleur aan te passen
                   .attr("fill", function(d){
@@ -474,7 +489,7 @@ d3.json("test.json", function(data) {
       d3.select(".sunhours")
           .text(d.NG)
       d3.select(".temperature")
-              .text(d.G)
+              .text(d.G/10)
       d3.select(".rainfall")
               .text(d.RH)
       d3.select(".windspeed")
@@ -486,7 +501,7 @@ d3.json("test.json", function(data) {
       arcWidth = 5.0;
   // Color on mouseover
       d3.select(this)
-        .attr("fill", "orange");
+        .attr("fill", "black");
     })
 
 
@@ -509,8 +524,14 @@ d3.json("test.json", function(data) {
           .text("windspeed");
 
       d3.select(this)
-        .attr("fill", "rgb(0, 204, 204)");
-
+        // .attr("fill", "rgb(0, 204, 204)");
+        .attr("fill", function (d) {
+          if (d.G >= -39 && d.G <=57) {return blue}
+          if (d.G >= 58 && d.G <=90) {return green}
+          if (d.G >= 91 && d.G <=133) {return yellow}
+          if (d.G >= 134 && d.G <=167) {return orange}
+          else {return red}
+        })
     });
 
   var input = function() {
