@@ -1,11 +1,6 @@
-//var gpxXMLUrl = "route";
-//console.log("route");
-//console.log(route);
-// var gpxXMLUrl = "https://rawgit.com/luukvandermeer/Strava_vis/master/Ride.xml";
-//var gpxXMLUrl = "https://rawgit.com/adg29/tour-de-france/f5479188bb7bb96e35489770827ed09730e8e8ca/20-strava-thibaut-pinot-Tour_de_France_Etape_20_MAGIQUE_.xml";
+
 
 var map;
-
 //Load XML file with the GPX parser
 function loadGPXFileIntoGoogleMap(map, filename) {
 //console.log(filename);
@@ -13,19 +8,22 @@ function loadGPXFileIntoGoogleMap(map, filename) {
     url: filename,
     dataType: "xml",
     success: function(data) {
-      console.log('Loaded', filename);
+      // console.log('Loaded', filename);
       var parser = new GPXParser(data, map);
-      parser.setTrackColour("#42b3f4"); // Set the track line colour
+      parser.setTrackColour("#2D4059"); // Set the track line colour
+
+      // parser.setTrackColour(selectedColor);
+
       parser.setTrackWidth(5); // Set the track line width
       parser.setMinTrackPointDelta(0.001); // Set the minimum distance between track points
       parser.centerAndZoom(data);
       parser.addTrackpointsToMap(); // Add the trackpoints
       parser.addWaypointsToMap(); // Add the waypoints
     },
-    error: function(request, errorType, errorMessage) {
-       console.log("XML AJAX Error: " + errorType + " with error message: " + errorMessage);
-      console.log("XML AJAX Error");
-    }
+    // error: function(request, errorType, errorMessage) {
+    //    console.log("XML AJAX Error: " + errorType + " with error message: " + errorMessage);
+    //   console.log("XML AJAX Error");
+    // }
   });
 }
 
@@ -225,7 +223,7 @@ function initMap(mapUrl = gpxXMLUrl) {
 
   var map = new google.maps.Map(document.getElementById("map-canvas"),
     mapOptions);
-  console.log('initMap');
+  console.log('maps.js', 'initMap');
   loadGPXFileIntoGoogleMap(map, mapUrl);
 
   // Get the HTML DOM element that will contain your map

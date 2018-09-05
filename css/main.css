@@ -164,17 +164,12 @@
 }
 
 
-
-
-
-
-
 #map-canvas {
     position: fixed;
     bottom:0;
     width: 20%;
     height: 150px;
-    margin-left: 6em;
+    margin-left: 5.5em;
 }
 
 
