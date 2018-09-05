@@ -14,7 +14,7 @@ function loadGPXFileIntoGoogleMap(map, filename) {
 
       // parser.setTrackColour(selectedColor);
 
-      parser.setTrackWidth(5); // Set the track line width
+      parser.setTrackWidth(3); // Set the track line width
       parser.setMinTrackPointDelta(0.001); // Set the minimum distance between track points
       parser.centerAndZoom(data);
       parser.addTrackpointsToMap(); // Add the trackpoints
