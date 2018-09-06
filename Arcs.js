@@ -394,13 +394,24 @@ var factorTime = 0.00007292; //Timefactor for arc
 var dailySeconds = 86.400; //seconds a day
 
 
-
+// var tx = 100,
+//     ty = 50,
+//     scale = 3;
 
   // append svg to the DIV
   d3.select(".chart")
     .append("svg:svg")
     .attr("width", width)
     .attr("height", height)
+    .call(d3.behavior.zoom().on("zoom", function () {
+        vis.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+      }))
+      .append("g")
+  // zoom function
+    // .on('wheel.zoom', onWheel)
+    // .append('g')
+    // .attr('transform', `translate(${tx}, ${ty}) scale(${scale})`)
+
 
 
   var render = function() {
@@ -409,7 +420,7 @@ var dailySeconds = 86.400; //seconds a day
     // set constants
     var PI = Math.PI;
     var arcMin = 1; // inner radius of the first arc
-    var arcWidth = 1; // width
+    var arcWidth = 1.1; // width
     var arcPad = 0.01; // padding between arcs
     var arcs = vis.selectAll("path.arc-path")
       .data(jsonRondjes);
@@ -447,6 +458,7 @@ var dailySeconds = 86.400; //seconds a day
         else {return red}
       })
       .attr("in", "coloredBlur")
+
       .attr("opacity", function(d) {
         return (d.FG/1.15+30)/100;
       })
@@ -465,6 +477,7 @@ var dailySeconds = 86.400; //seconds a day
     .each(function(d, i) {
       console.log(i);
     })
+
     .on("mouseover", function(d, i) {
       d3.select(".day")
         .text(d.date)
@@ -524,6 +537,35 @@ console.log('arcs.js', selectedColor)
     });
 
 
+// Zoom function
+  // function onWheel() {
+  //           // prevent default event behaviour
+  //           d3.event.preventDefault();
+  //
+  //           // set zooming
+  //           var factor = 1.05;
+  //           var center = d3.mouse(document.querySelector('svg'));
+  //           var newTx, newTy, newScale;
+  //
+  //           // calculate new scale
+  //           if (d3.event.deltaY > 0) {
+  //               newScale = scale * factor;
+  //           } else {
+  //               newScale = scale / factor;
+  //           }
+  //
+  //           // calculate new translate position
+  //           // [current mouse position] - ([current mouse position] - [current translate]) * magnification
+  //           newTx = center[0] - (center[0] - tx) * newScale / scale;
+  //           newTy = center[1] - (center[1] - ty) * newScale / scale;
+  //
+  //           // set new scale and translate position
+  //           scale = newScale;
+  //           tx = newTx;
+  //           ty = newTy;
+  //
+  //           vis.attr('transform', `translate(${tx}, ${ty}) scale(${scale})`);
+  //       }
 
 
 });
