@@ -367,14 +367,14 @@ d3.json("test.json", function(data) {
   {"date":"2017-12-28","FG":36,"G":39,"RH":7,"SQ":44,"NG":7,"type":"Ride","distance":81421.7,"total_elevation_gain":1108.0,"time":41280,"elapsed_time":20193,"url": "https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/20171228-102800-Ride.xml"},
   {"date":"2017-12-29","FG":48,"G":28,"RH":67,"SQ":3,"NG":6},
   {"date":"2017-12-30","FG":57,"G":88,"RH":37,"SQ":0,"NG":8},
-  {"date":"2017-12-31","FG":62,"G":106,"RH":393,"SQ":2,"NG":8}
+  {"date":"2017-12-31","FG":62,"G":106,"RH":393,"SQ":2,"NG":8,"type":"Ride","distance":81421.7,"total_elevation_gain":1108.0,"time":41280,"elapsed_time":2033193,"url": "https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/test.xml"}
   ];
 
   //console.log(d3.select("body").append("svg").attr("rondje", 200).data(jsonRondjes).enter()); //code laat array zien in console, jeej
 
   var
-    width = 600,
-    height = 600,
+    width = 820,
+    height = 820,
     margin = {
       top: 40,
       right: 20,
@@ -390,7 +390,7 @@ var orange = "rgb(230,109,53)";
 var red = "rgb(180,40,30)";
 
 
-var hours = d3.sum(jsonRondjes, function(d) {return d.distance});
+// var hours = d3.sum(jsonRondjes, function(d) {return d.distance});
 
 
 //Calculationvariables
@@ -405,6 +405,7 @@ var sunHours = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.S
 // var hours = d3.avg(jsonRondjes, function(d) {return d.G});
 var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.RH/10}});
 // var hours = d3.avg(jsonRondjes, function(d) {return d.FG});
+
 
 
   // append svg to the DIV
@@ -541,6 +542,7 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
 var selectedColor = d3.select(this).attr("fill")
 console.log('arcs.js', selectedColor)
     });
+
 
 
 });

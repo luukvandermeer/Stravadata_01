@@ -24,12 +24,30 @@
   width: 20%;
 }
 
+.credits {
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  float: right;
+  vertical-align: middle;
+  /* z-index: -4; */
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
+  font-weight: 200;
+  font-size: 0.8em;
+  width: 14%;
+  transform: rotate(-90deg);
+  margin-top: -11%;
+  margin-right: -6em;
+  /* margin-bottom: relative; */
+
+}
+
 .chart {
   position: fixed;
   top: 5%;
   right: inherit;
   position: center;
   margin-left: 40%;
+  background-color: rgba(216, 216, 216, 0.25);
 }
 
 .legend {
@@ -37,6 +55,7 @@
   right: inherit;
   position: center;
   max-width: 50%;
+  min-width: 40%;
   height: auto;
   bottom: 0%;
   margin-left: 4.5em;
