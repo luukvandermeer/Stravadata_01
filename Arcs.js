@@ -367,14 +367,14 @@ d3.json("test.json", function(data) {
   {"date":"2017-12-28","FG":36,"G":39,"RH":7,"SQ":44,"NG":7,"type":"Ride","distance":81421.7,"total_elevation_gain":1108.0,"time":41280,"elapsed_time":20193,"url": "https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/20171228-102800-Ride.xml"},
   {"date":"2017-12-29","FG":48,"G":28,"RH":67,"SQ":3,"NG":6},
   {"date":"2017-12-30","FG":57,"G":88,"RH":37,"SQ":0,"NG":8},
-  {"date":"2017-12-31","FG":62,"G":106,"RH":393,"SQ":2,"NG":8,"type":"Ride","distance":81421.7,"total_elevation_gain":1108.0,"time":41280,"elapsed_time":2033193,"url": "https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/test.xml"}
+  {"date":"2017-12-31","FG":62,"G":106,"RH":393,"SQ":2,"NG":8}
   ];
 
   //console.log(d3.select("body").append("svg").attr("rondje", 200).data(jsonRondjes).enter()); //code laat array zien in console, jeej
 
   var
-    width = 820,
-    height = 820,
+    width = 300*4,
+    height = 150*4,
     margin = {
       top: 40,
       right: 20,
@@ -389,28 +389,22 @@ var yellow ="rgb(248,181,0)";
 var orange = "rgb(230,109,53)";
 var red = "rgb(180,40,30)";
 
-
-// var hours = d3.sum(jsonRondjes, function(d) {return d.distance});
-
-
 //Calculationvariables
 var factorTime = 0.00007292; //Timefactor for arc
 var dailySeconds = 86.400; //seconds a day
 
-//Sum
+//Metric calculations
 var elapsedTime = d3.sum(jsonRondjes, function(d) {return d.elapsed_time/3600});
 var distance = d3.sum(jsonRondjes, function(d) {return d.distance/1000});
 var elevationGain = d3.sum(jsonRondjes, function(d) {return d.total_elevation_gain});
 var sunHours = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.SQ}});
-// var hours = d3.avg(jsonRondjes, function(d) {return d.G});
+var temperature = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d.G/10}}); //medium calculation
 var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.RH/10}});
-// var hours = d3.avg(jsonRondjes, function(d) {return d.FG});
-
-
+ var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d.FG/10}}); //medium calculation
 
   // append svg to the DIV
   d3.select(".chart")
-    .append("svg:svg")
+    .append("svg")
     .attr("width", width)
     .attr("height", height)
 //zoom function
@@ -477,6 +471,7 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
   }
   initialize();
 
+//Add variables with value variables and initMap
 
   d3.selectAll(".arc-path")
     .each(function(d, i) {
@@ -521,13 +516,13 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
       d3.select(".elevation")
           .text(d3.format(".1f")(elevationGain))
       d3.select(".sunhours")
-          .text(d3.format(".1f")(sunHours))
+          .text(d3.format("f")(sunHours))
       d3.select(".temperature")
-          .text("13")
+          .text(d3.format(".1f")(temperature))
       d3.select(".rainfall")
           .text(d3.format(".1f")(rainFall))
       d3.select(".windspeed")
-          .text("2.8");
+          .text(d3.format(".1f")(windSpeed));
 
       d3.select(this) //return the color arcs to normal
         .attr("fill", function (d, i) {
@@ -542,7 +537,4 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
 var selectedColor = d3.select(this).attr("fill")
 console.log('arcs.js', selectedColor)
     });
-
-
-
 });

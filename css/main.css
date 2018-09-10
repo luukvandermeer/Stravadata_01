@@ -35,7 +35,7 @@
   font-size: 0.8em;
   width: 14%;
   transform: rotate(-90deg);
-  margin-top: -11%;
+  margin-top: -19%;
   margin-right: -6em;
   /* margin-bottom: relative; */
 
@@ -47,7 +47,7 @@
   right: inherit;
   position: center;
   margin-left: 40%;
-  background-color: rgba(216, 216, 216, 0.25);
+  /* background-color: rgba(216, 216, 216, 0.25); */
 }
 
 .legend {
