@@ -364,7 +364,7 @@ d3.json("test.json", function(data) {
   {"date":"2017-12-25","FG":62,"G":74,"RH":4,"SQ":0,"NG":7},
   {"date":"2017-12-26","FG":62,"G":58,"RH":12,"SQ":20,"NG":7},
   {"date":"2017-12-27","FG":44,"G":51,"RH":73,"SQ":2,"NG":8},
-  {"date":"2017-12-28","FG":36,"G":39,"RH":7,"SQ":44,"NG":7,"type":"Ride","distance":81421.7,"total_elevation_gain":1108.0,"time":41280,"elapsed_time":20193,"url": "https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/20171228-102800-Ride.xml"},
+  {"date":"2017-12-28","FG":36,"G":39,"RH":7,"SQ":44,"NG":7,"type":"Ride","distance":81421.7,"total_elevation_gain":1108.0,"time":41280,"elapsed_time":20193,"url": "https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/HeatMap.xml"},
   {"date":"2017-12-29","FG":48,"G":28,"RH":67,"SQ":3,"NG":6},
   {"date":"2017-12-30","FG":57,"G":88,"RH":37,"SQ":0,"NG":8},
   {"date":"2017-12-31","FG":62,"G":106,"RH":393,"SQ":2,"NG":8}
