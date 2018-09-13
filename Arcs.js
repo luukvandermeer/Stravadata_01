@@ -1,7 +1,4 @@
 d3.json("test.json", function(data) {
-  //console.log(function(d) {
-  //  return d.rondje * 20;
-  //  });
 
   var jsonRondjes = [{"date":"2017-01-01","FG":39,"G":5,"RH":19,"SQ":0,"NG":8},
   {"date":"2017-01-02","FG":22,"G":30,"RH":5,"SQ":43,"NG":5},
@@ -370,11 +367,10 @@ d3.json("test.json", function(data) {
   {"date":"2017-12-31","FG":62,"G":106,"RH":393,"SQ":2,"NG":8}
   ];
 
-  //console.log(d3.select("body").append("svg").attr("rondje", 200).data(jsonRondjes).enter()); //code laat array zien in console, jeej
 
   var
-    width = 300*4,
-    height = 150*4,
+    width = 700,
+    height = 650,
     margin = {
       top: 40,
       right: 20,
@@ -400,18 +396,28 @@ var elevationGain = d3.sum(jsonRondjes, function(d) {return d.total_elevation_ga
 var sunHours = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.SQ}});
 var temperature = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d.G/10}}); //medium calculation
 var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.RH/10}});
- var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d.FG/10}}); //medium calculation
+var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d.FG/10}}); //medium calculation
+
+
+
+//Zoom II
+// var zoom = d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
 
   // append svg to the DIV
   d3.select(".chart")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-//zoom function
-    .call(d3.behavior.zoom().on("zoom", function () {
+//Zoom II
+    // .append("g")
+    //   .call(zoom)
+    // .append("g");
+//Zoom I
+    .call(d3.behavior.zoom().scaleExtent([1,20]).on("zoom", function () {
         vis.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
       }))
       .append("g")
+
 
 
   var render = function() {
@@ -424,8 +430,6 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
     var arcPad = 0.01; // padding between arcs
     var arcs = vis.selectAll("path.arc-path")
       .data(jsonRondjes);
-
-
 
     // arc accessor
     //  d and i are automatically passed to accessor functions,
@@ -450,11 +454,11 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
     arcs.enter().append("svg:path")
       .attr("class", "arc-path") // assigns a class for easier selecting
       .attr("transform", "translate(400,200)") // sets position--easier than setting x's and y's
-      .attr("fill", function (d) {    //calculation if a day is good or bad weather
-        if (d.G >= -39 && d.G <=57) {return blue}
-        if (d.G >= 58 && d.G <=90) {return green}
-        if (d.G >= 91 && d.G <=133) {return yellow}
-        if (d.G >= 134 && d.G <=167) {return orange}
+      .attr("fill", function (d) {    //calculation if it's a sunny day = (temperate+sunhours)/rainfall
+        if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
+        if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 2.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=6.3) {return green}
+        if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 6.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=14) {return yellow}
+        if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 14.1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=22.78) {return orange}
         else {return red}
       })
       .attr("in", "coloredBlur")
@@ -471,8 +475,27 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
   }
   initialize();
 
-//Add variables with value variables and initMap
 
+//Add variables directly to span
+d3.select(".hours")
+  .text(d3.format(".1f")(elapsedTime))
+  d3.select(".hours")
+    .text(d3.format(".1f")(elapsedTime))
+  d3.select(".distance")
+      .text(d3.format(".1f")(distance))
+  d3.select(".elevation")
+      .text(d3.format(".1f")(elevationGain))
+  d3.select(".sunhours")
+      .text(d3.format("f")(sunHours))
+  d3.select(".temperature")
+      .text(d3.format(".1f")(temperature))
+  d3.select(".rainfall")
+      .text(d3.format(".1f")(rainFall))
+  d3.select(".windspeed")
+      .text(d3.format(".1f")(windSpeed))
+
+
+//Add variables with value variables and initMap
   d3.selectAll(".arc-path")
     .each(function(d, i) {
       console.log(i);
@@ -503,6 +526,7 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
       d3.select(this)
         // .delay("1") //adding delay
         .attr("fill", "black");
+            console.log('weatherIndex',weatherIndex);
     })
 
 
@@ -523,18 +547,33 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
           .text(d3.format(".1f")(rainFall))
       d3.select(".windspeed")
           .text(d3.format(".1f")(windSpeed));
-
+//Functie loads XML file into maps
+      // initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/Heatmap.xml");
       d3.select(this) //return the color arcs to normal
         .attr("fill", function (d, i) {
-          if (d.G >= -39 && d.G <=57) {return blue}
-          if (d.G >= 58 && d.G <=90) {return green}
-          if (d.G >= 91 && d.G <=133) {return yellow}
-          if (d.G >= 134 && d.G <=167) {return orange}
+          if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
+          if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 2.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=6.3) {return green}
+          if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 6.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=14) {return yellow}
+          if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 14.1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=22.78) {return orange}
           else {return red}
         })
-
-//Selects colors which can be used in a later version to color the gpx track
-var selectedColor = d3.select(this).attr("fill")
-console.log('arcs.js', selectedColor)
+// //Selects colors which can be used in a later version to color the gpx track
+// var selectedColor = d3.select(this).attr("fill")
+// console.log('arcs.js', selectedColor)
     });
+
+
+// Zoom II
+// svg.append("rect")
+//               .attr("class", "overlay")
+//               .attr("width", width)
+//               .attr("height", height);
+//
+// function zoomed() {
+//             vis.attr("transform",
+//                 "translate(" + zoom.translate() + ")" +
+//                 "scale(" + zoom.scale() + ")"
+//             );
+//         }
+
 });

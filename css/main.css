@@ -1,5 +1,11 @@
 /* General CSS */
 
+/* html,
+body {
+    width: 100%;
+    height: 100%;
+} */
+
 .h1 {
   display: block;
   font-family: 'Montserrat';
@@ -10,7 +16,10 @@
   margin: 2em;
 }
 
-
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
 
 .text {
   font-family: 'Open Sans', serif;
@@ -22,6 +31,33 @@
   line-height: 1.4em;
   margin-left: 6em;
   width: 20%;
+}
+
+#twelfpm{
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  font-size: 0.7em;
+  position: absolute;
+  top: -3%;
+  right: 42%;
+}
+
+#sixpm{
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  font-size: 0.7em;
+  position: absolute;
+  top: 42%;
+  right: -5%;
+}
+
+#sixam{
+  font-family: 'Open Sans', serif;
+  color: #2D4059;
+  font-size: 0.7em;
+  position: absolute;
+  top: 42%;
+  left: -5%;
 }
 
 .credits {
@@ -47,17 +83,19 @@
   right: inherit;
   position: center;
   margin-left: 40%;
+    pointer-events: all;
+  /* transform-origin: center; */
   /* background-color: rgba(216, 216, 216, 0.25); */
 }
 
-.legend {
+#legend {
   position: fixed;
   right: inherit;
   position: center;
   max-width: 50%;
   min-width: 40%;
   height: auto;
-  bottom: 0%;
+  bottom: -2%;
   margin-left: 4.5em;
   z-index: -5;
 }
