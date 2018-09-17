@@ -492,8 +492,8 @@ d3.select(".hours")
   d3.select(".rainfall")
       .text(d3.format(".1f")(rainFall))
   d3.select(".windspeed")
-      .text(d3.format(".1f")(windSpeed))
-
+      .text(d3.format(".1f")(windSpeed));
+// initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/Heatmap.xml");
 
 //Add variables with value variables and initMap
   d3.selectAll(".arc-path")
