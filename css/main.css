@@ -10,10 +10,6 @@
   margin: 2em;
 }
 
-.overlay {
-  fill: none;
-  pointer-events: all;
-}
 
 .text {
   font-family: 'Open Sans', serif;
@@ -201,6 +197,10 @@ opacity: 0;
 opacity: 0;
 }
 
+
+
+
+
 /* CSS Mobile */
 @media screen and (max-width: 800px){
   #twelfpm{
@@ -220,22 +220,19 @@ opacity: 0;
     font-family: 'Open Sans', serif;
     color: #2D4059;
     margin: 2em;
-    position: center;
+    position: fixed;
     font-weight: 300;
     font-size: 0.9em;
     line-height: 1.4em;
     margin-left: 2em;
     width: 80%;
+    text-align: center;
   }
 
   .chart {
-    display: block;
-    /* scale: 20%; */
-    /* position: fixed; */
-    width: 80%;
-    margin-left: 2em;
-    bottom: 0px;
-    pointer-events: all;
+    position: fixed;
+    align-content: center;
+    margin-left: -10em;
   }
 
   #legend {
@@ -248,6 +245,7 @@ opacity: 0;
     bottom: -2%;
     margin-left: 4.5em;
     z-index: -5;
+    display: none;
   }
 
   #map-canvas {
@@ -256,14 +254,26 @@ opacity: 0;
       width: 80%;
       height: 150px;
       margin-left: 2em;
+      display: none;
+
   }
 .mobile{
 visibility: visible;
 }
+.desktop{
+  visibility: hidden;
+  display: none;
+
+}
+
 }
 
 @media screen and (min-width: 800px){
 .mobile{
   visibility: hidden;
+  display: none;
+}
+.desktop{
+  visibility: visible;
 }
 }
