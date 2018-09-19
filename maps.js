@@ -36,7 +36,7 @@ function initMap(mapUrl = gpxXMLUrl) {
         "featureType": "water",
         "elementType": "geometry",
         "stylers": [{
-            "color": "#e9e9e9"
+            "color": "#F6F6F6"
           },
           {
             "lightness": 17
@@ -47,7 +47,7 @@ function initMap(mapUrl = gpxXMLUrl) {
         "featureType": "landscape",
         "elementType": "geometry",
         "stylers": [{
-            "color": "#f5f5f5"
+            "color": "#e3e3e3"
           },
           {
             "lightness": 20
@@ -214,7 +214,6 @@ function initMap(mapUrl = gpxXMLUrl) {
 
 // When the window has finished loading create our google map below
 google.maps.event.addDomListener(window, 'load', initMap);
-
 
 /** @constructor */
 function USGSOverlay(bounds, image, map) {

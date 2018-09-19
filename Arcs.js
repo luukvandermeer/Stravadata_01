@@ -1,4 +1,4 @@
-d3.json("test.json", function(data) {
+d3.json("Data_2017.json", function(data) {
 
   var jsonRondjes = [{"date":"2017-01-01","FG":39,"G":5,"RH":19,"SQ":0,"NG":8},
   {"date":"2017-01-02","FG":22,"G":30,"RH":5,"SQ":43,"NG":5},
@@ -400,6 +400,7 @@ var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d
 
 
 
+
 //Zoom II
 // var zoom = d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
 
@@ -479,35 +480,35 @@ var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d
 
 //Add variables directly to span
 d3.select(".hours")
-  .text(d3.format(".1f")(elapsedTime))
+  .text(d3.format(",.1f")(elapsedTime))
   d3.select(".hours")
-    .text(d3.format(".1f")(elapsedTime))
+    .text(d3.format(",.1f")(elapsedTime))
   d3.select(".distance")
-      .text(d3.format(".1f")(distance))
+      .text(d3.format(",.1f")(distance))
   d3.select(".elevation")
-      .text(d3.format(".1f")(elevationGain))
+      .text(d3.format(",.1f")(elevationGain))
   d3.select(".sunhours")
-      .text(d3.format("f")(sunHours))
+      .text(d3.format(",f")(sunHours))
   d3.select(".temperature")
-      .text(d3.format(".1f")(temperature))
+      .text(d3.format(",.1f")(temperature))
   d3.select(".rainfall")
-      .text(d3.format(".1f")(rainFall))
+      .text(d3.format(",.1f")(rainFall))
   d3.select(".windspeed")
-      .text(d3.format(".1f")(windSpeed));
-initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/welcome.xml");
+      .text(d3.format(",.1f")(windSpeed));
 
 //Add variables with value variables and initMap
   d3.selectAll(".arc-path")
     .each(function(d, i) {
-      console.log(i);
+      // console.log(i);
     })
+
     .on("mouseover", function(d, i) {
       d3.select(".day")
         .text(d.date)
       d3.select(".hours")
-        .text(d3.format(".1f")(d.elapsed_time/3600))
+        .text(d3.format(",.1f")(d.elapsed_time/3600))
       d3.select(".distance")
-          .text(d3.format(".1f")(d.distance/1000))
+          .text(d3.format(",.1f")(d.distance/1000))
       d3.select(".elevation")
           .text(d.total_elevation_gain)
       d3.select(".sunhours")
@@ -520,32 +521,30 @@ initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/welcome.xm
           .text(d.FG/10);
   //Functie loads XML file into maps
       initMap(d.url);
-      // d3.select(".click_route")
-      //   .text(d.url);
   // Color on mouseover
       d3.select(this)
         // .delay("1") //adding delay
         .attr("fill", "black");
     })
 
-
     .on("mouseout", function(d, i) {
       d3.select(".day")
         .text("in 2017")
       d3.select(".hours")
-        .text(d3.format(".1f")(elapsedTime))
+        .text(d3.format(",.1f")(elapsedTime))
       d3.select(".distance")
-          .text(d3.format(".1f")(distance))
+          .text(d3.format(",.1f")(distance))
       d3.select(".elevation")
-          .text(d3.format(".1f")(elevationGain))
+          .text(d3.format(",.1f")(elevationGain))
       d3.select(".sunhours")
           .text(d3.format("f")(sunHours))
       d3.select(".temperature")
-          .text(d3.format(".1f")(temperature))
+          .text(d3.format(",.1f")(temperature))
       d3.select(".rainfall")
-          .text(d3.format(".1f")(rainFall))
+          .text(d3.format(",.1f")(rainFall))
       d3.select(".windspeed")
-          .text(d3.format(".1f")(windSpeed));
+          .text(d3.format(",.1f")(windSpeed));
+      initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/welcome.xml");
       d3.select(this) //return the color arcs to normal
         .attr("fill", function (d, i) {
           if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
