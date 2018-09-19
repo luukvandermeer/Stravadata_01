@@ -537,14 +537,14 @@ d3.select(".hours")
       d3.select(".elevation")
           .text(d3.format(",.1f")(elevationGain))
       d3.select(".sunhours")
-          .text(d3.format("f")(sunHours))
+          .text(d3.format(",f")(sunHours))
       d3.select(".temperature")
           .text(d3.format(",.1f")(temperature))
       d3.select(".rainfall")
           .text(d3.format(",.1f")(rainFall))
       d3.select(".windspeed")
           .text(d3.format(",.1f")(windSpeed));
-      initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/welcome.xml");
+      initMap("https://rawgit.com/luukvandermeer/Strava_vis/gpx_data/welcome.xml");
       d3.select(this) //return the color arcs to normal
         .attr("fill", function (d, i) {
           if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
