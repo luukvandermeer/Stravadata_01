@@ -408,6 +408,7 @@ var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d
     .append("svg")
     .attr("width", width)
     .attr("height", height)
+
 //Zoom II
     // .append("g")
     //   .call(zoom)
@@ -493,7 +494,7 @@ d3.select(".hours")
       .text(d3.format(".1f")(rainFall))
   d3.select(".windspeed")
       .text(d3.format(".1f")(windSpeed));
-// initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/Heatmap.xml");
+initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/welcome.xml");
 
 //Add variables with value variables and initMap
   d3.selectAll(".arc-path")
@@ -519,14 +520,12 @@ d3.select(".hours")
           .text(d.FG/10);
   //Functie loads XML file into maps
       initMap(d.url);
-      d3.select(".click_route")
-        // .delay("100") //adding delay
-        .text(d.url);
+      // d3.select(".click_route")
+      //   .text(d.url);
   // Color on mouseover
       d3.select(this)
         // .delay("1") //adding delay
         .attr("fill", "black");
-            console.log('weatherIndex',weatherIndex);
     })
 
 
@@ -547,8 +546,6 @@ d3.select(".hours")
           .text(d3.format(".1f")(rainFall))
       d3.select(".windspeed")
           .text(d3.format(".1f")(windSpeed));
-//Functie loads XML file into maps
-      // initMap("https://rawgit.com/luukvandermeer/Strava_vis/master/gpx_data/Heatmap.xml");
       d3.select(this) //return the color arcs to normal
         .attr("fill", function (d, i) {
           if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
@@ -557,9 +554,6 @@ d3.select(".hours")
           if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 14.1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=22.78) {return orange}
           else {return red}
         })
-// //Selects colors which can be used in a later version to color the gpx track
-// var selectedColor = d3.select(this).attr("fill")
-// console.log('arcs.js', selectedColor)
     });
 
 
