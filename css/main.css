@@ -29,7 +29,7 @@
   font-size: 0.7em;
   position: absolute;
   top: -3%;
-  right: 42%;
+  right: 26%;
 }
 
 #sixpm{
@@ -38,7 +38,7 @@
   font-size: 0.7em;
   position: absolute;
   top: 42%;
-  right: -5%;
+  right: 3%;
 }
 
 #sixam{
@@ -47,7 +47,7 @@
   font-size: 0.7em;
   position: absolute;
   top: 42%;
-  left: -5%;
+  left: 40%;
 }
 
 .credits {
@@ -68,11 +68,14 @@
 }
 
 .chart {
-  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
   top: 5%;
-  right: inherit;
+  /* right: 5%; */
+  /* right: inherit; */
   position: center;
-  margin-left: 40%;
+  /* margin-left: 40%; */
     pointer-events: all;
   /* transform-origin: center; */
   /* background-color: rgba(216, 216, 216, 0.25); */
@@ -80,14 +83,13 @@
 
 #legend {
   position: fixed;
-  right: inherit;
-  position: center;
   max-width: 50%;
   min-width: 40%;
   height: auto;
   bottom: -2%;
   margin-left: 4.5em;
   z-index: -5;
+  right: 1%;
 }
 
 /* Code for hover data */
@@ -233,6 +235,8 @@ opacity: 0;
     position: fixed;
     align-content: center;
     margin-left: -10em;
+
+
   }
 
   #legend {

@@ -369,16 +369,16 @@ d3.json("Data_2017.json", function(data) {
 
 
   var
-    width = 700,
-    height = 650,
+    width = window.innerWidth,
+    height = window.innerHeight,
     margin = {
       top: 40,
       right: 20,
       bottom: 20,
-      left: 500
+      left: 50,
     };
 
-//Colorlegend
+//Colorlegend for colouring arcs
 var blue ="rgb(32,126,132)";
 var green ="rgb(94,144,81)";
 var yellow ="rgb(248,181,0)";
@@ -399,31 +399,24 @@ var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.R
 var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d.FG/10}}); //medium calculation
 
 
-
-
 //Zoom II
-// var zoom = d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
+var zoom = d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
 
-  // append svg to the DIV
-  d3.select(".chart")
+var svg = d3.select(".chart")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
+    .append("g")
+    .call(zoom);
 
-//Zoom II
-    // .append("g")
-    //   .call(zoom)
-    // .append("g");
-//Zoom I
-    .call(d3.behavior.zoom().scaleExtent([1,20]).on("zoom", function () {
-        vis.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
-      }))
-      .append("g")
-
-
+  var rect = svg.append("rect") //rectangle behind SVG to fix zoom also on empty places
+    .attr("width", width)
+    .attr("height", height)
+    .style("fill", "none")
+    .style("pointer-events", "all");
 
   var render = function() {
-    vis = d3.select("svg"); // select the svg
+    vis = svg; // select the svg
 
     // set constants
     var PI = Math.PI;
@@ -452,10 +445,15 @@ var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d
           return dailySeconds*factorTime-(dailySeconds*factorTime-(d.time*factorTime))+(d.elapsed_time*factorTime)
         });
 
+
     // draw arcs for new data
     arcs.enter().append("svg:path")
       .attr("class", "arc-path") // assigns a class for easier selecting
-      .attr("transform", "translate(400,200)") // sets position--easier than setting x's and y's
+
+      // .attr("transform", "translate(940,200)") // sets position--easier than setting x's and y's
+      // .attr('viewBox','0 0 '+Math.min(width,height)+' '+Math.min(width,height))
+      .attr('preserveAspectRatio','xMinYMin')
+      .attr("transform", "translate(" + Math.min(width,height) *1.45 + ", 200)")
       .attr("fill", function (d) {    //calculation if it's a sunny day = (temperate+sunhours)/rainfall
         if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
         if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 2.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=6.3) {return green}
@@ -555,18 +553,10 @@ d3.select(".hours")
         })
     });
 
-
-// Zoom II
-// svg.append("rect")
-//               .attr("class", "overlay")
-//               .attr("width", width)
-//               .attr("height", height);
-//
-// function zoomed() {
-//             vis.attr("transform",
-//                 "translate(" + zoom.translate() + ")" +
-//                 "scale(" + zoom.scale() + ")"
-//             );
-//         }
-
+function zoomed() {
+            vis.attr("transform",
+                "translate(" + zoom.translate() + ")" +
+                "scale(" + zoom.scale() + ")"
+            );
+        }
 });
