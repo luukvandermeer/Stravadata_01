@@ -375,7 +375,7 @@ d3.json("Data_2017.json", function(data) {
       top: 40,
       right: 20,
       bottom: 20,
-      left: 50,
+      left: 20,
     };
 
 //Colorlegend for colouring arcs
@@ -413,7 +413,7 @@ var svg = d3.select(".chart")
     .attr("width", width)
     .attr("height", height)
     .style("fill", "none")
-    .style("pointer-events", "all");
+    .style("pointer-events", "all")
 
   var render = function() {
     vis = svg; // select the svg
@@ -453,7 +453,8 @@ var svg = d3.select(".chart")
       // .attr("transform", "translate(940,200)") // sets position--easier than setting x's and y's
       // .attr('viewBox','0 0 '+Math.min(width,height)+' '+Math.min(width,height))
       .attr('preserveAspectRatio','xMinYMin')
-      .attr("transform", "translate(" + Math.min(width,height) *1.45 + ", 200)")
+      .attr("transform", "translate(" + Math.abs(width,height) * 0.75 + ", 200)")
+
       .attr("fill", function (d) {    //calculation if it's a sunny day = (temperate+sunhours)/rainfall
         if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
         if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 2.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=6.3) {return green}
@@ -559,4 +560,5 @@ function zoomed() {
                 "scale(" + zoom.scale() + ")"
             );
         }
+
 });

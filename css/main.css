@@ -89,7 +89,7 @@
   bottom: -2%;
   margin-left: 4.5em;
   z-index: -5;
-  right: 1%;
+  right: 0%;
 }
 
 /* Code for hover data */
@@ -234,9 +234,7 @@ opacity: 0;
   .chart {
     position: fixed;
     align-content: center;
-    margin-left: -10em;
-
-
+    top:0%;
   }
 
   #legend {
