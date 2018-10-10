@@ -1,3 +1,10 @@
+
+// var colourVariable = (window.addEventListener("hover", function(e) {e.detail}));
+
+// function(evt) {
+//     alert(evt.detail);
+// }, false);
+
 var map;
 //Load XML file with the GPX parser
 function loadGPXFileIntoGoogleMap(map, filename) {
@@ -8,7 +15,10 @@ function loadGPXFileIntoGoogleMap(map, filename) {
     success: function(data) {
       // console.log('Loaded', filename);
       var parser = new GPXParser(data, map);
-      parser.setTrackColour("#2D4059"); // Set the track line colour
+      // parser.setTrackColour(selectedColor);
+      // console.log(colourVariable);
+      parser.setTrackColour("#2D4059");
+
       parser.setTrackWidth(3); // Set the track line width
       parser.setMinTrackPointDelta(0.001); // Set the minimum distance between track points
       parser.centerAndZoom(data);
@@ -22,13 +32,13 @@ var overlay;
 USGSOverlay.prototype = new google.maps.OverlayView();
 
 function initMap(mapUrl = gpxXMLUrl) {
-  console.log("check", mapUrl);
+  // console.log("check", mapUrl);
   var mapOptions = {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     zoom: 10, // How zoomed in you want the map to start at (always required)
     center: {
-      lat: 56.2509978, //William Playfair born
-      lng: -2.2650115
+      lat: 56.2509978, // lat William Playfair born
+      lng: -2.2650115 //lng William Playfair born
     },
 
     // Mapstyle
@@ -194,8 +204,7 @@ function initMap(mapUrl = gpxXMLUrl) {
     ]
   };
 
-  var map = new google.maps.Map(document.getElementById("map-canvas"),
-    mapOptions);
+  var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   loadGPXFileIntoGoogleMap(map, mapUrl);
 
   //Overlay code
@@ -203,17 +212,21 @@ function initMap(mapUrl = gpxXMLUrl) {
     new google.maps.LatLng(56.2069098, -2.3928525),
     new google.maps.LatLng(56.3045618, -2.1686945));
 
-  // The photograph is courtesy of the U.S. Geological Survey.
+  // The photograph is next to the birthplace of Playfair
   var srcImage = "image/WelcomeNoBackground.png";
-
-  // The custom USGSOverlay object contains the USGS image,
-  // the bounds of the image, and a reference to the map.
   overlay = new USGSOverlay(bounds, srcImage, map);
 }
 
-
 // When the window has finished loading create our google map below
 google.maps.event.addDomListener(window, 'load', initMap);
+// google.maps.event.addDomListener(window, 'hover', trackColour);
+
+
+
+
+
+
+//Overlay code
 
 /** @constructor */
 function USGSOverlay(bounds, image, map) {

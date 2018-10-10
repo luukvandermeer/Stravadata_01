@@ -2,101 +2,92 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="Strava data" content="Strava data goes visual">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Strava data" content="Strava data goes visual">
+    <title>Strava Data</title>
+    <!--Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <!-- Custom CSS -->
+    <link href="css/main.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="image/LvdM-06.png" />
+    <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+    <!--script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?=   APIKEY   &callback=initMap"></script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/peplin/gpxviewer/next/loadgpx.js"></script>
 
-  <title>Strava Data</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125851800-1"></script>
+</head>
 
-  <!-- Custom CSS -->
-  <link href="css/main.css" rel="stylesheet">
+<script>
+    WebFont.load({
+        google: {
+            families: ['Roboto:400,700', 'Montserrat:900,700,500', 'OpenSans:400']
+        }
+    });
+</script>
 
-<!-- Favicon -->
-<link rel="shortcut icon" type="image/png" href="image/LvdM-06.png"/>
-<!-- <link rel="shortcut icon" type="image/png" href="http://example.com/favicon.png"/ -->
+<div class="max">
 
-  <!--Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
-  <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-  <!--script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?=   APIKEY   &callback=initMap"></script-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://rawgit.com/peplin/gpxviewer/next/loadgpx.js"></script>
+    <body bgcolor=F6F6F6>
+        <div class="title">
+            <h1>Strava Data </h1>
+        </div>
+        <div class="text" id="textid">
+            <div class="desktop"> How does a complete year of bike riding look, besides a big pile of apple pies and banana peels?
+                <br>
+                <br> Well, <span class="day" id="day">in the year 2017</span> I cycled for over <span class="hours" id="hours"></span> hours, with a total distance
+                <br> of <span class="distance" id="distance"></span>kilometers and an
+                <br> elevation of<span class="elevation" id="elevation"></span>meters.
+                <br>
+                <br> On the days that I cycled their were <span class="sunhours" id="sunhours"></span> hours of sun with an
+                <br> average temperature of <span class="temperature" id="temperature"></span>
+                <br> degrees Celsius and <span class="rainfall" id="rainfall"></span>mm of
+                <br> rainfall.
+                <br>
+                <br> Sometimes the <span class="windspeed" id="windspeed"></span> m/s windspeed helped me when I was cycling a loop but…….it actually always felt like a headwind.
+                <br>
+            </div>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125851800-1"></script>
-  <script>
+            <div class="mobile"> How does a complete year of bike riding look, besides a big pile of apple pies and banana peels?
+                <br>
+                <br> Run to your desktop, and have a look!
+            </div>
+        </div>
+
+        <div class="chart">
+            <script type="text/javascript" src="arcs.js"></script>
+            <div id="twelfpm">
+                12pm
+            </div>
+            <div id="sixpm">
+                6pm
+            </div>
+            <div id="sixam">
+                6am
+            </div>
+            <img src="image/legend3.png" alt="legend" class="legend">
+        </div>
+        <div id="map-canvas">
+            <script type="text/javascript" src="maps.js"></script>
+        </div>
+</div>
+</body>
+<script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'UA-125851800-1');
-  </script>
-
-</head>
-
-<body bgcolor=F6F6F6>
-
-  <article class="text">
-
-    <h1> Strava Data </h1>
-<div class="desktop"> How does a complete year of bike riding look, besides a big pile of apple pies and banana peels?
-<br>
-<br>
-Well, <span class="day">in 2017</span> I cycled for over <span class="hours"></span> hours, with a total distance of <span class="distance"></span>kilometers and an elevation of<span class="elevation"></span>meters.
-<br>
-<br>
-On the days that I cycled their were <span class="sunhours"></span>  hours of sun with an average temperature of <span class="temperature"></span> degrees Celsius and <span class="rainfall"></span>mm of rainfall.
-<br>
-<br>
-Sometimes the <span class="windspeed">2.8</span> m/s windspeed helped me when I was cycling a loop but…….it actually always felt like a headwind.
-<br>
-</div>
-
-<div class="mobile"> How does a complete year of bike riding look, besides a big pile of apple pies and banana peels?
-  <br>
-  <br>
-Run to your desktop, and have a look!
-
-</div>
-
-
-
-</article>
-
-
-
-
-  <div class="chart">
-    <script type="text/javascript" src="arcs.js"></script>
-    <div id = "twelfpm">
-    12pm
-    </div>
-    <div id = "sixpm">
-    6pm
-    </div>
-    <div id = "sixam">
-    6am
-    </div>
-    <img src="image/legend.png" alt="legend" id="legend">
-  </div>
-
-
-
-  <div id="map-canvas">
-    <script type="text/javascript" src="maps.js"></script>
-  </div>
-
-<!--
-
-
-    <div class = "credits">
-      Luuk van der Meer | <a href="https://twitter.com/meerluuk" target="_blank"> Twitter </a>
-    </div>
- -->
-
-</body>
+</script>
 
 </html>

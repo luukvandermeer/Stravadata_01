@@ -1,38 +1,48 @@
 /* General CSS */
-
-.h1 {
-  display: block;
-  font-family: 'Montserrat';
-  color: #2D4059;
-  position: center;
-  font-size: 3em;
-  font-weight: bold;
-  margin: 2em;
+/* .arc-path:hover{
+  transform: scale(500000.000000001);
+  width: 5px;
 }
 
+.arc-path {
+  transition: all 1s;
+  transform-origin: 50% 50%;
+} */
 
-.text {
-  font-family: 'Open Sans', serif;
+
+.max {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.title {
+  font-family: 'Montserrat';
+  font-weight: 700;
   color: #2D4059;
-  margin: 2em;
-  position: center;
+  margin-top: -0.0em;
+  font-size: 1.2em;
+  line-height: 1.4em;
+  margin-left: 4.5em;
+}
+.text {
+  font-family: 'Open Sans';
+  color: #2D4059;
+  margin-top: 0em;
+  margin-bottom: 1.5em;
   font-weight: 300;
   font-size: 0.9em;
   line-height: 1.4em;
   margin-left: 6em;
-  width: 20%;
+  width: 20.5%;
 }
-
-#twelfpm{
+#twelfpm {
   font-family: 'Open Sans', serif;
   color: #2D4059;
   font-size: 0.7em;
-  position: absolute;
-  top: -3%;
-  right: 26%;
+  position: inherit;
+  top: 1%;
+  right: 25%;
 }
-
-#sixpm{
+#sixpm {
   font-family: 'Open Sans', serif;
   color: #2D4059;
   font-size: 0.7em;
@@ -40,183 +50,166 @@
   top: 42%;
   right: 3%;
 }
-
-#sixam{
+#sixam {
+  /* display: block; */
   font-family: 'Open Sans', serif;
   color: #2D4059;
   font-size: 0.7em;
   position: absolute;
   top: 42%;
-  left: 40%;
+  margin-left: 40%;
 }
-
-.credits {
-  font-family: 'Open Sans', serif;
-  color: #2D4059;
-  float: right;
-  vertical-align: middle;
-  /* z-index: -4; */
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  font-weight: 200;
-  font-size: 0.8em;
-  width: 14%;
-  transform: rotate(-90deg);
-  margin-top: -19%;
-  margin-right: -6em;
-  /* margin-bottom: relative; */
-
-}
-
 .chart {
-  width: 100vw;
-  height: 100vh;
   position: absolute;
-  top: 5%;
-  /* right: 5%; */
-  /* right: inherit; */
+  top: 1%;
   position: center;
-  /* margin-left: 40%; */
-    pointer-events: all;
-  /* transform-origin: center; */
-  /* background-color: rgba(216, 216, 216, 0.25); */
+  pointer-events: all;
+  max-height: 700px;
 }
-
-#legend {
-  position: fixed;
+.legend {
+  position: absolute;
   max-width: 50%;
   min-width: 40%;
   height: auto;
-  bottom: -2%;
+  bottom: 6%;
   margin-left: 4.5em;
   z-index: -5;
-  right: 0%;
+  right: 1.5%;
 }
-
 /* Code for hover data */
 .day {
-  font-family: 'Open Sans', serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  padding: 5px 5px 5px 5px;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.5) 100%, transparent 100%);
+  padding: 3px 3px 3px 3px;
   margin: 5px;
 }
-
 .hours {
-  font-family: 'Open Sans', serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  padding: 5px 5px 5px 5px;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.5) 100%, transparent 100%);
+  padding: 3px 3px 3px 3px;
   margin: 5px;
 }
 
 .distance {
-  font-family: 'Open Sans', serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  padding: 5px 5px 5px 5px;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.5) 100%, transparent 100%);
+  padding: 3px 3px 3px 3px;
   margin: 5px;
 }
 
 .elevation {
-  font-family: 'Open Sans', serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  padding: 5px 5px 5px 5px;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.5) 100%, transparent 100%);
+  padding: 3px 3px 3px 3px;
   margin: 5px;
 }
 
 .sunhours {
-  font-family: 'Open Sans', serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  padding: 5px 5px 5px 5px;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.5) 100%, transparent 100%);
+  padding: 3px 3px 3px 3px;
   margin: 5px;
 }
 
 .temperature {
-  font-family: 'Open Sans', serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  padding: 5px 5px 5px 5px;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.5) 100%, transparent 100%);
+  padding: 3px 3px 3px 3px;
   margin: 5px;
 }
 
 .rainfall {
-  font-family: 'Open Sans', serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  padding: 5px 5px 5px 5px;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.5) 100%, transparent 100%);
+  padding: 3px 3px 3px 3px;
   margin: 5px;
 }
 
 .windspeed {
-  font-family: 'Open Sans', serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   color: #2D4059;
   border-radius: 0px;
   text-align: center;
-  background: linear-gradient(to right, rgba(216, 216, 216, 0.25) 100%, transparent 100%);
-  padding: 5px 5px 5px 5px;
+  background: linear-gradient(to right, rgba(216, 216, 216, 0.5) 100%, transparent 100%);
+  padding: 3px 3px 3px 3px;
   margin: 5px;
 }
 
-
 #map-canvas {
-    position: fixed;
-    bottom:0;
-    width: 20%;
-    height: 150px;
-    margin-left: 5.5em;
+  position: fixed;
+  bottom: 0;
+  width: 20%;
+  height: 150px;
+  margin-left: 5.5em;
 }
 
 /* Aanpassen van het Google Maps iframe */
-.gm-fullscreen-control{
-opacity:1;
+.gm-fullscreen-control {
+  opacity: 0;
 }
-
-.gm-style-mtc{
-opacity: 0;
+.gm-style-mtc {
+  opacity: 0;
 }
-
-.gmnoprint{
+.gmnoprint {
+  opacity: 0;
+}
+.gm-style-cc {
   opacity: 0;
 }
 
-.gm-style-cc{
-opacity: 0;
-}
-
-
-
-
-
 /* CSS Mobile */
-@media screen and (max-width: 800px){
-  #twelfpm{
+@media screen and (max-width: 800px) {
+  #twelfpm {
     visibility: hidden;
   }
-
-  #sixpm{
+  #sixpm {
     visibility: hidden;
   }
-
-  #sixam{
-  visibility: hidden;
+  #sixam {
+    visibility: hidden;
   }
-
+  .title {
+    font-family: 'Montserrat';
+    font-weight: 900;
+    color: #2D4059;
+    margin: 2em;
+    position: absolute;
+    font-size: 1em;
+    line-height: 1.4em;
+    margin-left: 2em;
+    width: 80%;
+    text-align: center;
+    letter-spacing: 1.5px;
+  }
   .text {
     display: block;
     font-family: 'Open Sans', serif;
@@ -229,15 +222,14 @@ opacity: 0;
     margin-left: 2em;
     width: 80%;
     text-align: center;
+    top: 12%;
   }
-
   .chart {
     position: fixed;
     align-content: center;
-    top:0%;
+    top: 0%;
   }
-
-  #legend {
+  .legend {
     position: fixed;
     right: inherit;
     position: center;
@@ -245,37 +237,31 @@ opacity: 0;
     min-size: 40%;
     height: auto;
     bottom: -2%;
-    margin-left: 4.5em;
     z-index: -5;
     display: none;
   }
-
   #map-canvas {
-      position: fixed;
-      bottom:0;
-      width: 80%;
-      height: 150px;
-      margin-left: 2em;
-      display: none;
-
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    height: 150px;
+    margin-left: 2em;
+    display: none;
   }
-.mobile{
-visibility: visible;
+  .mobile {
+    visibility: visible;
+  }
+  .desktop {
+    visibility: hidden;
+    display: none;
+  }
 }
-.desktop{
-  visibility: hidden;
-  display: none;
-
-}
-
-}
-
-@media screen and (min-width: 800px){
-.mobile{
-  visibility: hidden;
-  display: none;
-}
-.desktop{
-  visibility: visible;
-}
+@media screen and (min-width: 800px) {
+  .mobile {
+    visibility: hidden;
+    display: none;
+  }
+  .desktop {
+    visibility: visible;
+  }
 }

@@ -1,6 +1,6 @@
 d3.json("Data_2017.json", function(data) {
 
-  var jsonRondjes = [{"date":"2017-01-01","FG":39,"G":5,"RH":19,"SQ":0,"NG":8},
+  var data2017 = [{"date":"2017-01-01","FG":39,"G":5,"RH":19,"SQ":0,"NG":8},
   {"date":"2017-01-02","FG":22,"G":30,"RH":5,"SQ":43,"NG":5},
   {"date":"2017-01-03","FG":43,"G":50,"RH":7,"SQ":5,"NG":7},
   {"date":"2017-01-04","FG":47,"G":58,"RH":18,"SQ":33,"NG":6},
@@ -369,7 +369,7 @@ d3.json("Data_2017.json", function(data) {
 
 
   var
-    width = window.innerWidth,
+    width = Math.min((window.innerWidth), 1280),
     height = window.innerHeight,
     margin = {
       top: 40,
@@ -384,19 +384,23 @@ var green ="rgb(94,144,81)";
 var yellow ="rgb(248,181,0)";
 var orange = "rgb(230,109,53)";
 var red = "rgb(180,40,30)";
+var darkerblue = "rgb(45,64,89)";
+
+
+
 
 //Calculationvariables
 var factorTime = 0.00007292; //Timefactor for arc
 var dailySeconds = 86.400; //seconds a day
 
 //Metric calculations
-var elapsedTime = d3.sum(jsonRondjes, function(d) {return d.elapsed_time/3600});
-var distance = d3.sum(jsonRondjes, function(d) {return d.distance/1000});
-var elevationGain = d3.sum(jsonRondjes, function(d) {return d.total_elevation_gain});
-var sunHours = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.SQ}});
-var temperature = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d.G/10}}); //medium calculation
-var rainFall = d3.sum(jsonRondjes, function(d){ if (d.distance >= 0) {return d.RH/10}});
-var windSpeed = d3.mean(jsonRondjes, function(d) {if (d.distance >= 0) {return d.FG/10}}); //medium calculation
+var elapsedTime = d3.sum(data2017, function(d) {return d.elapsed_time/3600});
+var distance = d3.sum(data2017, function(d) {return d.distance/1000});
+var elevationGain = d3.sum(data2017, function(d) {return d.total_elevation_gain});
+var sunHours = d3.sum(data2017, function(d){ if (d.distance >= 0) {return d.SQ}});
+var temperature = d3.mean(data2017, function(d) {if (d.distance >= 0) {return d.G/10}}); //medium calculation
+var rainFall = d3.sum(data2017, function(d){ if (d.distance >= 0) {return d.RH/10}});
+var windSpeed = d3.mean(data2017, function(d) {if (d.distance >= 0) {return d.FG/10}}); //medium calculation
 
 
 //Zoom II
@@ -424,37 +428,22 @@ var svg = d3.select(".chart")
     var arcWidth = 1.1; // width
     var arcPad = 0.01; // padding between arcs
     var arcs = vis.selectAll("path.arc-path")
-      .data(jsonRondjes);
+      .data(data2017);
 
     // arc accessor
     //  d and i are automatically passed to accessor functions,
     //  with d being the data and i the index of the data
     var drawArc = d3.svg.arc()
-      .innerRadius(function(d, i) {
-        return arcMin + i * (arcWidth) + arcPad;
-      })
-      .outerRadius(function(d, i) {
-        return arcMin + (i + 1) * (arcWidth);
-      })
-      .startAngle(
-      function(d) {
-      return d.time*factorTime
-      })
-      .endAngle(
-        function(d) {
-          return dailySeconds*factorTime-(dailySeconds*factorTime-(d.time*factorTime))+(d.elapsed_time*factorTime)
-        });
-
+      .innerRadius(function(d, i) {return arcMin + i * (arcWidth) + arcPad;})
+      .outerRadius(function(d, i) {return arcMin + (i + 1.2) * (arcWidth);})
+      .startAngle(function(d) {return d.time*factorTime})
+      .endAngle(function(d) {return dailySeconds*factorTime-(dailySeconds*factorTime-(d.time*factorTime))+(d.elapsed_time*factorTime)});
 
     // draw arcs for new data
     arcs.enter().append("svg:path")
       .attr("class", "arc-path") // assigns a class for easier selecting
-
-      // .attr("transform", "translate(940,200)") // sets position--easier than setting x's and y's
-      // .attr('viewBox','0 0 '+Math.min(width,height)+' '+Math.min(width,height))
       .attr('preserveAspectRatio','xMinYMin')
       .attr("transform", "translate(" + Math.abs(width,height) * 0.75 + ", 200)")
-
       .attr("fill", function (d) {    //calculation if it's a sunny day = (temperate+sunhours)/rainfall
         if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
         if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 2.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=6.3) {return green}
@@ -463,14 +452,13 @@ var svg = d3.select(".chart")
         else {return red}
       })
       .attr("in", "coloredBlur")
-
       .attr("opacity", function(d) {
         return (d.FG/1.15+30)/100;
       })
       .attr("d", drawArc); // draw the arc
   };
 
-  // drawing the click area
+  // // drawing the click area
   var initialize = function(d, i) {
     render(i);
   }
@@ -478,8 +466,8 @@ var svg = d3.select(".chart")
 
 
 //Add variables directly to span
-d3.select(".hours")
-  .text(d3.format(",.1f")(elapsedTime))
+// d3.select(".hours")
+//     .text(d3.format(",.1f")(elapsedTime))
   d3.select(".hours")
     .text(d3.format(",.1f")(elapsedTime))
   d3.select(".distance")
@@ -498,7 +486,6 @@ d3.select(".hours")
 //Add variables with value variables and initMap
   d3.selectAll(".arc-path")
     .each(function(d, i) {
-      // console.log(i);
     })
 
     .on("mouseover", function(d, i) {
@@ -520,10 +507,27 @@ d3.select(".hours")
           .text(d.FG/10);
   //Functie loads XML file into maps
       initMap(d.url);
+  //Colors to text
+  var selectedColor = d3.select(this).attr("fill")
+document.getElementById("day").style.color = selectedColor
+document.getElementById("hours").style.color = selectedColor
+document.getElementById("distance").style.color = selectedColor
+document.getElementById("elevation").style.color = selectedColor
+document.getElementById("sunhours").style.color = selectedColor
+document.getElementById("temperature").style.color = selectedColor
+document.getElementById("rainfall").style.color = selectedColor
+document.getElementById("windspeed").style.color = selectedColor
+// var hoverColour = new CustomEvent("hover", {detail: "green"});
+// window.dispatchEvent(hoverColour);
+// set constants
+
   // Color on mouseover
       d3.select(this)
-        // .delay("1") //adding delay
-        .attr("fill", "black");
+          .style("opacity", 1)
+          .style("display","block")
+          .style("stroke-width", 5)    // set the stroke width
+          .style("stroke", selectedColor)
+          .delay(5)
     })
 
     .on("mouseout", function(d, i) {
@@ -544,15 +548,24 @@ d3.select(".hours")
       d3.select(".windspeed")
           .text(d3.format(",.1f")(windSpeed));
       initMap("https://rawgit.com/luukvandermeer/Strava_vis/gpx_data/welcome.xml");
+
       d3.select(this) //return the color arcs to normal
-        .attr("fill", function (d, i) {
-          if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= -1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=2.3) {return blue}
-          if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 2.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=6.3) {return green}
-          if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 6.4 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=14) {return yellow}
-          if (((d.G+10)+(d.SQ+10))/(d.RH+10) >= 14.1 && ((d.G+10)+(d.SQ+10))/(d.RH+10) <=22.78) {return orange}
-          else {return red}
+        .transition()
+        .style("opacity", function(d, i) {
+          return ((d.FG)/1.15+30)/100;
         })
+        .style("stroke-width", 0)
+        // .ease(quad)
+        document.getElementById("day").style.color = darkerblue
+        document.getElementById("hours").style.color = darkerblue
+        document.getElementById("distance").style.color = darkerblue
+        document.getElementById("elevation").style.color = darkerblue
+        document.getElementById("sunhours").style.color = darkerblue
+        document.getElementById("temperature").style.color = darkerblue
+        document.getElementById("rainfall").style.color = darkerblue
+        document.getElementById("windspeed").style.color = darkerblue
     });
+
 
 function zoomed() {
             vis.attr("transform",
